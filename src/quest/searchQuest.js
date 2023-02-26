@@ -86,7 +86,7 @@ export class SearchQuest {
             await getUpdatedUA('both');
         } else if (flag == 1) {
             if (userAgents.pcSource == 'updated') {
-                //throw new UserAgentInvalidException('Cannot find a working UA for pc.');
+                throw new UserAgentInvalidException('Cannot find a working UA for pc.');
                 console.log("this is disabled for developing");
             }
             await getUpdatedUA('pc');
