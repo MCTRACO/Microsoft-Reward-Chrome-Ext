@@ -9,8 +9,9 @@ document.getElementById('Solve').addEventListener('click', async () => {
     const currentTabId = tabs[0].id;
     console.log(currentTabId);
     chrome.scripting.executeScript({
+        world: 'MAIN',
         target: {tabId: currentTabId}, // access global here
-        function: solve2,
+        function: solve4,
     },
     );
 });

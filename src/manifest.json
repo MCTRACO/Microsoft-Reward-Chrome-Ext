@@ -22,7 +22,8 @@
 		"notifications",
 		"storage",
 		"webRequest",
-		"declarativeNetRequest"
+		"declarativeNetRequest",
+		"scripting"
 	],
 	"host_permissions": [
 		"https://www.bing.com/search?q=*",

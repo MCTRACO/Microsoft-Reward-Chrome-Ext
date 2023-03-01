@@ -1,7 +1,8 @@
-function getanswer() {
-    return _w.rewardsQuizRenderInfo.correctAnswer;
-}
-function _solve4() {
+
+export function solve4() {
+    function getanswer() {
+        return _w.rewardsQuizRenderInfo.correctAnswer;
+    }
     const answer = getanswer();
     const answers = document.getElementsByClassName('rqOption');
 
@@ -12,5 +13,3 @@ function _solve4() {
     }
     console.log('Solve 4');
 }
-
-export const solve4 = _solve4;
