@@ -92,7 +92,7 @@ export async function getDebugInfo() {
 export async function getStableUA() {
     const controller = new AbortController();
     const signal = controller.signal;
-    const fetchProm = fetch('https://raw.githubusercontent.com/MCTRACO/Microsoft-Reward-Chrome-Ext/master/useragents.json', {method: 'GET', signal: signal});
+    const fetchProm = fetch('https://raw.githubusercontent.com/tmxkn1/Microsoft-Reward-Chrome-Ext/master/useragents.json', {method: 'GET', signal: signal});
 
     setTimeout(() => controller.abort(), 3000);
 
