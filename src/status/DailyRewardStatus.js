@@ -75,7 +75,7 @@ export class DailyRewardStatus {
         const controller = new AbortController();
         const signal = controller.signal;
         const fetchPromise = fetch(USER_STATUS_BING_URL, this._getFetchOptions(signal));
-        setTimeout(() => controller.abort(), 3000);
+        setTimeout(() => controller.abort(), 9000);
         const text = await this._awaitFetchPromise(fetchPromise).catch(async (ex) => {
             throw new ResponseUnexpectedStatusException('DailyRewardStatus::getUserStatusJsonFromBing', ex);
         });
@@ -86,7 +86,7 @@ export class DailyRewardStatus {
         const controller = new AbortController();
         const signal = controller.signal;
         const fetchPromise = fetch(USER_STATUS_DETAILED_URL, this._getFetchOptions(signal));
-        setTimeout(() => controller.abort(), 3000);
+        setTimeout(() => controller.abort(), 9000);
         const text = await this._awaitFetchPromise(fetchPromise).catch(async (ex) => {
             if (ex.name == 'FetchFailed::TypeError') {
                 console.log('An error occurred in the first status update attempt:');

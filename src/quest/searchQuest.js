@@ -190,12 +190,12 @@ function setMsEdgeUA() {
         {
             addRules: [
                 {
-                    id: 1,
+                    id: 3,
                     priority: 1,
                     action: {
                         type: 'modifyHeaders',
-                        responseHeaders: [
-                            {'header': 'User-Agent', 'operation': 'set', 'value': userAgents.pc},
+                        requestHeaders: [
+                            {'header': 'user-agent', 'operation': 'set', 'value': userAgents.pc},
                         ],
                     },
                     condition: {
@@ -217,8 +217,8 @@ function setMobileUA() {
                     priority: 1,
                     action: {
                         type: 'modifyHeaders',
-                        responseHeaders: [
-                            {'header': 'User-Agent', 'operation': 'set', 'value': userAgents.pc},
+                        requestHeaders: [
+                            {'header': 'user-agent', 'operation': 'set', 'value': userAgents.mb},
                         ],
                     },
                     condition: {
@@ -231,17 +231,7 @@ function setMobileUA() {
     );
 }
 
-function toMobileUA(details) {
-    for (const i in details.requestHeaders) {
-        if (details.requestHeaders[i].name === 'User-Agent') {
-            details.requestHeaders[i].value = userAgents.mb;
-            break;
-        }
-    }
-    return {
-        requestHeaders: details.requestHeaders,
-    };
-}
+
 
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));

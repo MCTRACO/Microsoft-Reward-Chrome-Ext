@@ -19,8 +19,10 @@ function onExtensionLoad() {
 function loadSavedSettings() {
     chrome.storage.sync.get({
         compatibilityMode: false,
+        AutoSolve: false
     }, function (options) {
         _compatibilityMode = options.compatibilityMode;
+        _autosolve = options.AutoSolve
     });
 }
 
@@ -139,6 +141,7 @@ export let userAgents = {
     'pcSource': '',
     'mbSource': '',
 };
+let _autosolve;
 export let _compatibilityMode = false;
 export const userDailyStatus = new DailyRewardStatus();
 const googleTrend = new GoogleTrend();
@@ -164,6 +167,36 @@ chrome.runtime.onMessage.addListener(function (request) {
     if (request.action == 'copyDebugInfo') {
         getDebugInfo();
     }
+});
+
+chrome.tabs.onUpdated.addListener(async function(tabId,changeInfo,tab){
+    let url = tab.url;
+    if(url){
+        if (url.includes("PUBL=RewardsDO")){ // url reward tab opened by script
+            console.log("closing");
+            if(_autosolve){ // check if autosolving is enabled so it has been opening the tab auto
+                setTimeout(() => chrome.tabs.remove(tabId),1000) 
+            }
+            
+        }else{
+            if ( url && url.includes("https://www.bing.com/search?q=") && changeInfo.status == 'complete'){ //make sure the page has finished loading
+            
+                if(_autosolve){// if autosolve is enabled
+                console.log("once");
+                setTimeout(() => 
+                chrome.scripting.executeScript({
+                    target: {tabId: tabId},
+                    files: ['solveContent.js'],
+                    world: "MAIN"
+                }),3000);// wait for page load or refresh
+            }
+            // execute code once
+            
+        }
+        }
+    }
+    
+    
 });
 
 onExtensionLoad();
